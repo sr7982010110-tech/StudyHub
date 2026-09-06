@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StudyHub — Deep Notes</title>
+
+<title>StudyHub | NCERT Study Portal</title>
 
 <style>
 *{
@@ -12,346 +13,266 @@
   box-sizing:border-box;
 }
 
-:root{
-  --primary:#2563eb;
-  --secondary:#7c3aed;
-  --dark:#0f172a;
-  --text:#1e293b;
-  --muted:#64748b;
-  --bg:#f8fafc;
-  --card:#ffffff;
-  --border:#e2e8f0;
-  --success:#16a34a;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  color:#172033;
 }
 
 header{
-  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  color:white;
-  padding:20px 6%;
   position:sticky;
   top:0;
-  z-index:100;
-  box-shadow:0 5px 25px rgba(0,0,0,.15);
-}
-
-.nav{
+  z-index:1000;
+  background:#ffffff;
+  box-shadow:0 3px 15px rgba(0,0,0,.08);
+  padding:15px 6%;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:20px;
 }
 
 .logo{
-  font-size:27px;
+  font-size:25px;
   font-weight:800;
+  color:#2563eb;
 }
 
-.logo span{
-  color:#bfdbfe;
-}
-
-.nav-links{
-  display:flex;
-  gap:20px;
-}
-
-.nav-links a{
-  color:white;
+nav a{
   text-decoration:none;
+  color:#263248;
+  margin-left:20px;
   font-weight:600;
 }
 
+nav a:hover{
+  color:#2563eb;
+}
+
 .hero{
-  padding:65px 6%;
-  background:
-    radial-gradient(circle at top right,rgba(124,58,237,.25),transparent 35%),
-    linear-gradient(135deg,#eff6ff,#faf5ff);
+  text-align:center;
+  padding:75px 20px 55px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:white;
 }
 
 .hero h1{
   font-size:48px;
-  max-width:800px;
   margin-bottom:15px;
 }
 
 .hero p{
-  color:#475569;
   font-size:18px;
   max-width:750px;
-  line-height:1.7;
+  margin:auto;
+  line-height:1.6;
 }
 
 .container{
-  width:88%;
-  max-width:1250px;
+  width:90%;
+  max-width:1200px;
   margin:auto;
 }
 
 .section{
-  padding:45px 0;
+  padding:50px 0;
 }
 
 .section-title{
-  font-size:30px;
-  margin-bottom:10px;
-}
-
-.section-subtitle{
-  color:var(--muted);
+  text-align:center;
+  font-size:32px;
   margin-bottom:25px;
 }
 
 .class-buttons,
-.stream-buttons,
+.stream-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:30px;
+}
+
+.class-btn,
+.stream-btn{
+  border:none;
+  padding:12px 22px;
+  border-radius:12px;
+  background:white;
+  color:#2563eb;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.class-btn.active,
+.stream-btn.active{
+  background:#2563eb;
+  color:white;
+}
+
+.subject-title{
+  margin:35px 0 18px;
+  font-size:25px;
+  color:#1e3a8a;
+}
+
 .subject-buttons{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin:20px 0;
+  margin-bottom:25px;
 }
 
-button{
-  border:none;
-  cursor:pointer;
-  font-family:inherit;
-}
-
-.selector{
-  padding:12px 20px;
-  border-radius:30px;
+.subject-btn{
+  border:1px solid #dbe3f0;
   background:white;
-  border:1px solid var(--border);
-  font-weight:700;
-  transition:.2s;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
 }
 
-.selector:hover,
-.selector.active{
-  background:var(--primary);
-  color:white;
-  transform:translateY(-2px);
+.subject-btn:hover,
+.subject-btn.active{
+  background:#eaf1ff;
+  border-color:#2563eb;
+  color:#2563eb;
 }
 
-.search{
+.search-box{
   width:100%;
-  padding:16px 20px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  outline:none;
+  padding:15px 18px;
+  border:1px solid #d9e1ed;
+  border-radius:12px;
   font-size:16px;
-  margin:15px 0 30px;
+  margin:15px 0 25px;
+  outline:none;
 }
 
-.search:focus{
-  border-color:var(--primary);
+.search-box:focus{
+  border-color:#2563eb;
 }
 
 .chapter-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
 }
 
 .chapter-card{
   background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 5px 18px rgba(15,23,42,.06);
-  transition:.25s;
+  padding:22px;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+  transition:.2s;
 }
 
 .chapter-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 35px rgba(15,23,42,.1);
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(0,0,0,.11);
 }
 
 .chapter-number{
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:20px;
-  background:#dbeafe;
-  color:#1d4ed8;
-  font-size:12px;
+  color:#2563eb;
+  font-size:13px;
   font-weight:bold;
-  margin-bottom:12px;
+  margin-bottom:8px;
 }
 
 .chapter-card h3{
-  margin-bottom:10px;
-  font-size:20px;
+  font-size:18px;
+  line-height:1.4;
+  margin-bottom:17px;
 }
 
-.chapter-card p{
-  color:var(--muted);
-  line-height:1.5;
-  min-height:48px;
+.action-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
 }
 
-.read-btn{
-  margin-top:18px;
-  width:100%;
-  padding:13px;
-  border-radius:12px;
-  background:var(--primary);
-  color:white;
+.action-btn{
+  border:none;
+  padding:10px 5px;
+  border-radius:9px;
+  cursor:pointer;
   font-weight:bold;
+  font-size:12px;
 }
 
-.read-btn:hover{
-  background:#1d4ed8;
-}
-
-.empty{
-  text-align:center;
-  padding:50px;
-  background:white;
-  border-radius:20px;
-  color:var(--muted);
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.7);
-  z-index:500;
-  overflow:auto;
-  padding:30px 15px;
-}
-
-.modal-box{
-  background:white;
-  width:min(1000px,100%);
-  margin:auto;
-  border-radius:22px;
-  overflow:hidden;
-}
-
-.modal-header{
-  padding:25px;
-  background:linear-gradient(135deg,#1d4ed8,#7c3aed);
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:5;
-}
-
-.modal-header h2{
-  font-size:30px;
-}
-
-.close{
-  position:absolute;
-  right:20px;
-  top:18px;
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  background:rgba(255,255,255,.2);
-  color:white;
-  font-size:25px;
-}
-
-.note-content{
-  padding:30px;
-  line-height:1.75;
-}
-
-.note-content h2{
-  margin:30px 0 12px;
+.notes-btn{
+  background:#e8f1ff;
   color:#1d4ed8;
 }
 
-.note-content h3{
-  margin:22px 0 8px;
-  color:#334155;
+.questions-btn{
+  background:#ecfdf5;
+  color:#047857;
 }
 
-.note-content p{
-  margin-bottom:12px;
-}
-
-.note-content ul,
-.note-content ol{
-  padding-left:25px;
-  margin-bottom:18px;
-}
-
-.note-content li{
-  margin-bottom:7px;
-}
-
-.formula{
-  background:#eff6ff;
-  border-left:5px solid var(--primary);
-  padding:15px 18px;
-  margin:15px 0;
-  border-radius:8px;
-  font-weight:600;
-}
-
-.example{
-  background:#f0fdf4;
-  border-left:5px solid var(--success);
-  padding:18px;
-  margin:18px 0;
-  border-radius:8px;
-}
-
-.warning{
+.pyq-btn{
   background:#fff7ed;
-  border-left:5px solid #f97316;
-  padding:18px;
-  margin:18px 0;
-  border-radius:8px;
+  color:#c2410c;
 }
 
-.quick{
-  background:#f8fafc;
-  border:1px solid var(--border);
-  padding:20px;
-  border-radius:15px;
-  margin-top:25px;
-}
-
-footer{
-  background:var(--dark);
-  color:white;
-  padding:40px 6%;
-  margin-top:40px;
-}
-
-footer p{
-  color:#94a3b8;
-  margin-top:8px;
-}
-
-.hidden{
+.content-box{
+  margin-top:35px;
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
   display:none;
 }
 
+.content-box h2{
+  color:#2563eb;
+  margin-bottom:12px;
+}
+
+.content-box p{
+  line-height:1.7;
+  color:#526174;
+}
+
+footer{
+  margin-top:40px;
+  padding:30px;
+  text-align:center;
+  background:#111827;
+  color:white;
+}
+
 @media(max-width:700px){
+
+  header{
+    flex-direction:column;
+    padding:13px 5%;
+  }
+
+  nav a{
+    margin:0 7px;
+    font-size:14px;
+  }
+
   .hero h1{
-    font-size:34px;
+    font-size:36px;
   }
 
-  .nav-links{
-    display:none;
+  .hero p{
+    font-size:16px;
   }
 
-  .container{
-    width:92%;
+  .section-title{
+    font-size:27px;
   }
 
-  .note-content{
-    padding:20px;
+  .action-btn{
+    font-size:11px;
   }
 }
 </style>
@@ -360,1732 +281,1281 @@ footer p{
 <body>
 
 <header>
-  <div class="nav">
-    <div class="logo">Study<span>Hub</span></div>
+  <div class="logo">📚 StudyHub</div>
 
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#notes">Notes</a>
-      <a href="#subjects">Subjects</a>
-    </div>
-  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#classes">Classes</a>
+    <a href="#about">About</a>
+  </nav>
 </header>
 
+
 <section class="hero" id="home">
-  <div class="container">
-    <h1>Learn Everything. Understand Deeply.</h1>
-    <p>
-      Class 6 to 12 complete study platform with chapter-wise,
-      easy-to-understand detailed notes. Mathematics, Science,
-      Social Science, Languages and stream-wise senior secondary subjects.
-    </p>
-  </div>
+  <h1>StudyHub</h1>
+  <p>
+    NCERT-based study material for Classes 6 to 12.
+    Explore Notes, Questions and PYQs chapter-wise.
+  </p>
 </section>
 
-<section class="section" id="notes">
+
+<section class="section" id="classes">
+
 <div class="container">
 
 <h2 class="section-title">Choose Your Class</h2>
-<p class="section-subtitle">
-Select a class to explore chapter-wise study notes.
-</p>
 
 <div class="class-buttons" id="classButtons"></div>
 
-<div id="streamArea" class="hidden">
-  <h3>Choose Stream</h3>
-  <div class="stream-buttons">
-    <button class="selector" onclick="selectStream('science')">🔬 Science</button>
-    <button class="selector" onclick="selectStream('commerce')">💼 Commerce</button>
-    <button class="selector" onclick="selectStream('arts')">🎨 Arts / Humanities</button>
-  </div>
-</div>
+<div id="streamArea"></div>
 
-<h2 class="section-title" id="subjectTitle">Subjects</h2>
+<h2 class="section-title" id="subjectHeading">Choose Subject</h2>
 
 <div class="subject-buttons" id="subjectButtons"></div>
 
 <input
-  class="search"
-  id="search"
+  type="text"
+  id="searchBox"
+  class="search-box"
   placeholder="🔎 Search chapter..."
   oninput="searchChapters()"
 >
 
 <div class="chapter-grid" id="chapterGrid"></div>
 
+<div class="content-box" id="contentBox">
+  <h2 id="contentTitle"></h2>
+  <p id="contentText"></p>
+</div>
+
 </div>
 </section>
 
-<div class="modal" id="noteModal">
-  <div class="modal-box">
 
-    <div class="modal-header">
-      <button class="close" onclick="closeNotes()">×</button>
-      <h2 id="noteTitle"></h2>
-      <p id="noteSubtitle"></p>
-    </div>
+<section class="section" id="about">
+<div class="container">
+<h2 class="section-title">About StudyHub</h2>
 
-    <div class="note-content" id="noteContent"></div>
-
-  </div>
+<div class="content-box" style="display:block">
+<p>
+StudyHub is designed as a simple NCERT-based learning platform
+for students of Classes 6–12. Notes, practice questions and PYQs
+will be added chapter-wise.
+</p>
 </div>
+</div>
+</section>
+
 
 <footer>
-  <h2>StudyHub</h2>
-  <p>Deep learning notes for Classes 6–12.</p>
-  <p>Learn concepts. Understand them. Then practice.</p>
+  <p>© 2026 StudyHub | Learn • Practice • Improve</p>
 </footer>
+
 
 <script>
 
-/* =========================================================
-   STUDYHUB SUBJECT DATABASE
-========================================================= */
-
-const data = {
-
-6:{
-  "Mathematics":[
-    "Knowing Our Numbers",
-    "Whole Numbers",
-    "Playing with Numbers",
-    "Basic Geometrical Ideas",
-    "Understanding Elementary Shapes",
-    "Integers",
-    "Fractions",
-    "Decimals",
-    "Data Handling",
-    "Mensuration",
-    "Algebra",
-    "Ratio and Proportion",
-    "Symmetry",
-    "Practical Geometry"
-  ],
-
-  "Science":[
-    "Food: Where Does It Come From?",
-    "Components of Food",
-    "Fiber to Fabric",
-    "Sorting Materials into Groups",
-    "Separation of Substances",
-    "Changes Around Us",
-    "Getting to Know Plants",
-    "Body Movements",
-    "The Living Organisms",
-    "Motion and Measurement",
-    "Light, Shadows and Reflections",
-    "Electricity and Circuits",
-    "Fun with Magnets",
-    "Water",
-    "Air Around Us",
-    "Garbage In, Garbage Out"
-  ],
-
-  "Social Science":[
-    "What, Where, How and When?",
-    "On the Trail of the Earliest People",
-    "From Gathering to Growing Food",
-    "In the Earliest Cities",
-    "What Books and Burials Tell Us",
-    "Kingdoms, Kings and an Early Republic",
-    "New Questions and Ideas",
-    "Ashoka",
-    "Vital Villages and Thriving Towns",
-    "Traders and Kings",
-    "Buildings, Paintings and Books",
-    "The Earth in the Solar System",
-    "Globe: Latitudes and Longitudes",
-    "Motions of the Earth",
-    "Maps",
-    "Major Domains of the Earth",
-    "India",
-    "Major Landforms",
-    "Major Water Bodies",
-    "India: Climate, Vegetation and Wildlife",
-    "Understanding Diversity",
-    "Diversity and Discrimination",
-    "What is Government?",
-    "Key Elements of a Democratic Government",
-    "Panchayati Raj",
-    "Rural Administration",
-    "Urban Administration",
-    "Rural Livelihoods",
-    "Urban Livelihoods"
-  ],
-
-  "English":[
-    "Who Did Patrick's Homework?",
-    "How the Dog Found Himself a New Master?",
-    "Taro's Reward",
-    "An Indian-American Woman in Space",
-    "A Different Kind of School",
-    "Who I Am",
-    "Fair Play",
-    "A Game of Chance",
-    "Desert Animals",
-    "The Banyan Tree"
-  ]
-},
-
-7:{
-  "Mathematics":[
-    "Integers",
-    "Fractions and Decimals",
-    "Data Handling",
-    "Simple Equations",
-    "Lines and Angles",
-    "The Triangle and Its Properties",
-    "Comparing Quantities",
-    "Rational Numbers",
-    "Perimeter and Area",
-    "Algebraic Expressions",
-    "Exponents and Powers",
-    "Symmetry",
-    "Visualising Solid Shapes"
-  ],
-
-  "Science":[
-    "Nutrition in Plants",
-    "Nutrition in Animals",
-    "Heat",
-    "Acids, Bases and Salts",
-    "Physical and Chemical Changes",
-    "Weather, Climate and Adaptations",
-    "Winds, Storms and Cyclones",
-    "Soil",
-    "Respiration in Organisms",
-    "Transportation in Animals and Plants",
-    "Reproduction in Plants",
-    "Motion and Time",
-    "Electric Current and Its Effects",
-    "Light",
-    "Water",
-    "Forests",
-    "Wastewater Story"
-  ],
-
-  "Social Science":[
-    "Tracing Changes Through a Thousand Years",
-    "New Kings and Kingdoms",
-    "The Delhi Sultans",
-    "The Mughal Empire",
-    "Rulers and Buildings",
-    "Towns, Traders and Craftspersons",
-    "Tribes, Nomads and Settled Communities",
-    "Devotional Paths to the Divine",
-    "The Making of Regional Cultures",
-    "Eighteenth-Century Political Formations",
-    "Environment",
-    "Inside Our Earth",
-    "Our Changing Earth",
-    "Air",
-    "Water",
-    "Natural Vegetation",
-    "Human Environment",
-    "Human Environment Interactions",
-    "Life in the Deserts",
-    "Understanding Media",
-    "Markets Around Us",
-    "A Shirt in the Market",
-    "On Equality",
-    "Role of Government in Health",
-    "How the State Government Works",
-    "Growing Up as Boys and Girls",
-    "Women Change the World"
-  ],
-
-  "English":[
-    "Three Questions",
-    "A Gift of Chappals",
-    "Gopal and the Hilsa Fish",
-    "The Ashes That Made Trees Bloom",
-    "Quality",
-    "Expert Detectives",
-    "The Invention of Vita-Wonk",
-    "Fire: Friend and Foe",
-    "A Bicycle in Good Repair",
-    "A Tiger in the House"
-  ]
-},
-
-8:{
-  "Mathematics":[
-    "Rational Numbers",
-    "Linear Equations in One Variable",
-    "Understanding Quadrilaterals",
-    "Practical Geometry",
-    "Data Handling",
-    "Squares and Square Roots",
-    "Cubes and Cube Roots",
-    "Comparing Quantities",
-    "Algebraic Expressions and Identities",
-    "Visualising Solid Shapes",
-    "Mensuration",
-    "Exponents and Powers",
-    "Direct and Inverse Proportions",
-    "Factorisation",
-    "Introduction to Graphs",
-    "Playing with Numbers"
-  ],
-
-  "Science":[
-    "Crop Production and Management",
-    "Microorganisms",
-    "Coal and Petroleum",
-    "Combustion and Flame",
-    "Conservation of Plants and Animals",
-    "Reproduction in Animals",
-    "Reaching the Age of Adolescence",
-    "Force and Pressure",
-    "Friction",
-    "Sound",
-    "Chemical Effects of Electric Current",
-    "Some Natural Phenomena",
-    "Light",
-    "Stars and the Solar System",
-    "Pollution of Air and Water"
-  ],
-
-  "Social Science":[
-    "How, When and Where",
-    "From Trade to Territory",
-    "Ruling the Countryside",
-    "Tribals, Dikus and the Vision of a Golden Age",
-    "When People Rebel",
-    "Weavers, Iron Smelters and Factory Owners",
-    "Civilising the Native",
-    "Women, Caste and Reform",
-    "The Making of the National Movement",
-    "India After Independence",
-    "Resources",
-    "Land, Soil, Water",
-    "Mineral and Power Resources",
-    "Agriculture",
-    "Industries",
-    "Human Resources",
-    "The Indian Constitution",
-    "Understanding Secularism",
-    "Why Do We Need a Parliament?",
-    "Understanding Laws",
-    "Judiciary",
-    "Understanding Our Criminal Justice System",
-    "Marginalisation",
-    "Confronting Marginalisation",
-    "Public Facilities",
-    "Law and Social Justice"
-  ],
-
-  "English":[
-    "The Best Christmas Present",
-    "The Tsunami",
-    "Glimpses of the Past",
-    "Bepin Choudhury's Lapse of Memory",
-    "The Summit Within",
-    "This is Jody's Fawn",
-    "A Visit to Cambridge",
-    "A Short Monsoon Diary",
-    "The Great Stone Face"
-  ]
-},
-
-9:{
-  "Mathematics":[
-    "Number Systems",
-    "Polynomials",
-    "Coordinate Geometry",
-    "Linear Equations in Two Variables",
-    "Introduction to Euclid's Geometry",
-    "Lines and Angles",
-    "Triangles",
-    "Quadrilaterals",
-    "Circles",
-    "Heron's Formula",
-    "Surface Areas and Volumes",
-    "Statistics",
-    "Probability"
-  ],
-
-  "Science":[
-    "Matter in Our Surroundings",
-    "Is Matter Around Us Pure?",
-    "Atoms and Molecules",
-    "Structure of the Atom",
-    "The Fundamental Unit of Life",
-    "Tissues",
-    "Diversity in Living Organisms",
-    "Motion",
-    "Force and Laws of Motion",
-    "Gravitation",
-    "Work and Energy",
-    "Sound",
-    "Why Do We Fall Ill?",
-    "Natural Resources",
-    "Improvement in Food Resources"
-  ],
-
-  "Social Science":[
-    "The French Revolution",
-    "Socialism in Europe and the Russian Revolution",
-    "Nazism and the Rise of Hitler",
-    "Forest Society and Colonialism",
-    "Pastoralists in the Modern World",
-    "India: Size and Location",
-    "Physical Features of India",
-    "Drainage",
-    "Climate",
-    "Natural Vegetation",
-    "Population",
-    "What is Democracy?",
-    "Constitutional Design",
-    "Electoral Politics",
-    "Working of Institutions",
-    "Democratic Rights",
-    "The Story of Village Palampur",
-    "People as Resource",
-    "Poverty as a Challenge",
-    "Food Security in India"
-  ],
-
-  "English":[
-    "The Fun They Had",
-    "The Sound of Music",
-    "The Little Girl",
-    "A Truly Beautiful Mind",
-    "The Snake and the Mirror",
-    "My Childhood",
-    "Reach for the Top",
-    "Kathmandu",
-    "If I Were You"
-  ]
-},
-
-10:{
-  "Mathematics":[
-    "Real Numbers",
-    "Polynomials",
-    "Pair of Linear Equations in Two Variables",
-    "Quadratic Equations",
-    "Arithmetic Progressions",
-    "Triangles",
-    "Coordinate Geometry",
-    "Introduction to Trigonometry",
-    "Applications of Trigonometry",
-    "Circles",
-    "Areas Related to Circles",
-    "Surface Areas and Volumes",
-    "Statistics",
-    "Probability"
-  ],
-
-  "Science":[
-    "Chemical Reactions and Equations",
-    "Acids, Bases and Salts",
-    "Metals and Non-metals",
-    "Carbon and Its Compounds",
-    "Life Processes",
-    "Control and Coordination",
-    "How Do Organisms Reproduce?",
-    "Heredity",
-    "Light",
-    "Human Eye and Colourful World",
-    "Electricity",
-    "Magnetic Effects of Electric Current",
-    "Our Environment"
-  ],
-
-  "Social Science":[
-    "The Rise of Nationalism in Europe",
-    "Nationalism in India",
-    "The Making of a Global World",
-    "The Age of Industrialisation",
-    "Print Culture and the Modern World",
-    "Resources and Development",
-    "Forest and Wildlife Resources",
-    "Water Resources",
-    "Agriculture",
-    "Manufacturing Industries",
-    "Lifelines of National Economy",
-    "Power Sharing",
-    "Federalism",
-    "Gender, Religion and Caste",
-    "Political Parties",
-    "Outcomes of Democracy",
-    "Development",
-    "Sectors of the Indian Economy",
-    "Money and Credit",
-    "Globalisation and the Indian Economy",
-    "Consumer Rights"
-  ],
-
-  "English":[
-    "A Letter to God",
-    "Nelson Mandela",
-    "Two Stories About Flying",
-    "From the Diary of Anne Frank",
-    "Glimpses of India",
-    "Mijbil the Otter",
-    "Madam Rides the Bus",
-    "The Sermon at Benares",
-    "The Proposal"
-  ],
-
-  "Hindi":[
-    "क्षितिज / स्पर्श",
-    "काव्य खंड",
-    "गद्य खंड",
-    "व्याकरण",
-    "लेखन कौशल"
-  ]
-},
-
-11:{
-  "Science":{
-    "Physics":[
-      "Units and Measurements",
-      "Motion in a Straight Line",
-      "Motion in a Plane",
-      "Laws of Motion",
-      "Work, Energy and Power",
-      "System of Particles and Rotational Motion",
-      "Gravitation",
-      "Mechanical Properties of Solids",
-      "Mechanical Properties of Fluids",
-      "Thermal Properties of Matter",
-      "Thermodynamics",
-      "Kinetic Theory",
-      "Oscillations",
-      "Waves"
-    ],
-
-    "Chemistry":[
-      "Some Basic Concepts of Chemistry",
-      "Structure of Atom",
-      "Classification of Elements",
-      "Chemical Bonding",
-      "Thermodynamics",
-      "Equilibrium",
-      "Redox Reactions",
-      "Organic Chemistry",
-      "Hydrocarbons"
-    ],
-
-    "Mathematics":[
-      "Sets",
-      "Relations and Functions",
-      "Trigonometric Functions",
-      "Principle of Mathematical Induction",
-      "Complex Numbers",
-      "Linear Inequalities",
-      "Permutations and Combinations",
-      "Binomial Theorem",
-      "Sequences and Series",
-      "Straight Lines",
-      "Conic Sections",
-      "Three Dimensional Geometry",
-      "Limits and Derivatives",
-      "Statistics",
-      "Probability"
-    ],
-    "Biology":[
-      "The Living World",
-      "Biological Classification",
-      "Plant Kingdom",
-      "Animal Kingdom",
-      "Morphology of Flowering Plants",
-      "Anatomy of Flowering Plants",
-      "Structural Organisation",
-      "Cell",
-      "Biomolecules",
-      "Cell Cycle",
-      "Transport in Plants",
-      "Mineral Nutrition",
-      "Photosynthesis",
-      "Respiration",
-      "Plant Growth",
-      "Digestion",
-      "Breathing",
-      "Body Fluids",
-      "Excretory Products",
-      "Locomotion",
-      "Neural Control",
-      "Chemical Coordination"
-    ]
-  },
-
-  "Commerce":{
-    "Accountancy":[
-      "Introduction to Accounting",
-      "Theory Base of Accounting",
-      "Recording Transactions",
-      "Bank Reconciliation",
-      "Trial Balance",
-      "Depreciation",
-      "Bills of Exchange",
-      "Financial Statements"
-    ],
-    "Business Studies":[
-      "Nature and Purpose of Business",
-      "Forms of Business Organisation",
-      "Public and Private Enterprises",
-      "Business Services",
-      "Emerging Modes of Business",
-      "Social Responsibility",
-      "Sources of Business Finance",
-      "Small Business",
-      "Internal Trade",
-      "International Business"
-    ],
-    "Economics":[
-      "Introduction to Microeconomics",
-      "Consumer Behaviour",
-      "Production",
-      "Cost",
-      "Market",
-      "Statistics for Economics",
-      "Collection of Data",
-      "Organisation of Data",
-      "Presentation of Data",
-      "Measures of Central Tendency"
-    ],
-    "Mathematics":[
-      "Sets",
-      "Relations and Functions",
-      "Algebra",
-      "Calculus",
-      "Statistics",
-      "Probability"
-    ]
-  },
-
-  "Arts":{
-    "History":[
-      "Early Societies",
-      "Writing and City Life",
-      "An Empire Across Three Continents",
-      "Nomadic Empires",
-      "Changing Cultural Traditions",
-      "Displacing Indigenous Peoples",
-      "Paths to Modernisation"
-    ],
-    "Political Science":[
-      "Constitution",
-      "Rights",
-      "Election",
-      "Executive",
-      "Legislature",
-      "Judiciary",
-      "Federalism",
-      "Local Government",
-      "Political Theory",
-      "Freedom",
-      "Equality",
-      "Social Justice"
-    ],
-    "Geography":[
-      "Geography as a Discipline",
-      "Earth",
-      "Landforms",
-      "Climate",
-      "Oceans",
-      "India",
-      "Physiography",
-      "Drainage",
-      "Climate",
-      "Natural Vegetation"
-    ],
-    "Economics":[
-      "Statistics",
-      "Introduction to Economics",
-      "Consumer Behaviour",
-      "Production",
-      "Market",
-      "National Income"
-    ]
-  }
-},
-
-12:{
-  "Science":{
-    "Physics":[
-      "Electric Charges and Fields",
-      "Electrostatic Potential",
-      "Current Electricity",
-      "Moving Charges and Magnetism",
-      "Magnetism",
-      "Electromagnetic Induction",
-      "Alternating Current",
-      "Electromagnetic Waves",
-      "Ray Optics",
-      "Wave Optics",
-      "Dual Nature",
-      "Atoms",
-      "Nuclei",
-      "Semiconductor Electronics"
-    ],
-
-    "Chemistry":[
-      "Solutions",
-      "Electrochemistry",
-      "Chemical Kinetics",
-      "d and f Block Elements",
-      "Coordination Compounds",
-      "Haloalkanes",
-      "Alcohols, Phenols and Ethers",
-      "Aldehydes, Ketones and Acids",
-      "Amines",
-      "Biomolecules"
-    ],
-
-    "Mathematics":[
-      "Relations and Functions",
-      "Inverse Trigonometric Functions",
-      "Matrices",
-      "Determinants",
-      "Continuity and Differentiability",
-      "Applications of Derivatives",
-      "Integrals",
-      "Applications of Integrals",
-      "Differential Equations",
-      "Vector Algebra",
-      "Three Dimensional Geometry",
-      "Linear Programming",
-      "Probability"
-    ],
-
-    "Biology":[
-      "Reproduction",
-      "Sexual Reproduction",
-      "Human Reproduction",
-      "Reproductive Health",
-      "Genetics",
-      "Molecular Basis of Inheritance",
-      "Evolution",
-      "Human Health",
-      "Microbes",
-      "Biotechnology",
-      "Organisms and Populations",
-      "Ecosystem",
-      "Biodiversity"
-    ]
-  },
-
-  "Commerce":{
-    "Accountancy":[
-      "Accounting for Partnership",
-      "Goodwill",
-      "Change in Partnership",
-      "Dissolution",
-      "Company Accounts",
-      "Share Capital",
-      "Debentures",
-      "Financial Statements"
-    ],
-    "Business Studies":[
-      "Nature and Significance of Management",
-      "Principles of Management",
-      "Business Environment",
-      "Planning",
-      "Organising",
-      "Staffing",
-      "Directing",
-      "Controlling",
-      "Financial Management",
-      "Marketing",
-      "Consumer Protection"
-    ],
-    "Economics":[
-      "National Income",
-      "Money and Banking",
-      "Income Determination",
-      "Government Budget",
-      "Balance of Payments",
-      "Indian Economy",
-      "Liberalisation",
-      "Human Capital",
-      "Rural Development",
-      "Employment",
-      "Environment"
-    ],
-    "Mathematics":[
-      "Relations and Functions",
-      "Matrices",
-      "Determinants",
-      "Calculus",
-      "Probability",
-      "Statistics"
-    ]
-  },
-
-  "Arts":{
-    "History":[
-      "Bricks, Beads and Bones",
-      "Kings, Farmers and Towns",
-      "Kinship, Caste and Class",
-      "Thinkers, Beliefs and Buildings",
-      "Through the Eyes of Travellers",
-      "Bhakti-Sufi Traditions",
-      "An Imperial Capital",
-      "Peasants and Zamindars",
-      "Colonialism and Countryside",
-      "Rebels and the Raj",
-      "Mahatma Gandhi",
-      "Framing the Constitution"
-    ],
-    "Political Science":[
-      "Challenges of Nation Building",
-      "Era of One-Party Dominance",
-      "Politics of Planned Development",
-      "India's External Relations",
-      "Crisis of Democratic Order",
-      "Regional Aspirations",
-      "Recent Developments",
-      "Contemporary Centres of Power",
-      "Contemporary South Asia",
-      "International Organisations",
-      "Security",
-      "Environment",
-      "Globalisation"
-    ],
-    "Geography":[
-      "Human Geography",
-      "Population",
-      "Human Settlements",
-      "Land Resources",
-      "Water Resources",
-      "Mineral Resources",
-      "Manufacturing",
-      "Transport",
-      "International Trade",
-      "India: Population",
-      "Migration",
-      "Human Development",
-      "Resources",
-      "Industries"
-    ],
-    "Economics":[
-      "National Income",
-      "Money",
-      "Income Determination",
-      "Government Budget",
-      "Balance of Payments",
-      "Indian Economy",
-      "Development",
-      "Employment",
-      "Environment"
-    ]
-  }
-}
-
-};
-
-/* =========================================================
-   CURRENT STATE
-========================================================= */
-
-let currentClass = 6;
-let currentStream = null;
-let currentSubject = null;
-
-/* =========================================================
+/* =========================
    CLASS BUTTONS
-========================================================= */
+========================= */
+
+const classes = [6,7,8,9,10,11,12];
 
 const classButtons = document.getElementById("classButtons");
 
-for(let c=6;c<=12;c++){
+classes.forEach(cls => {
 
-  const btn=document.createElement("button");
+  const button = document.createElement("button");
 
-  btn.className="selector";
+  button.className = "class-btn";
+  button.textContent = "Class " + cls;
 
-  btn.textContent="Class "+c;
+  button.onclick = () => selectClass(cls);
 
-  btn.onclick=()=>selectClass(c);
+  classButtons.appendChild(button);
+});
 
-  classButtons.appendChild(btn);
-}
 
-/* =========================================================
+/* =========================
+   SUBJECT DATA
+========================= */
+
+const juniorSubjects = {
+
+6:[
+"Mathematics",
+"Science",
+"Social Science",
+"English",
+"Hindi"
+],
+
+7:[
+"Mathematics",
+"Science",
+"Social Science",
+"English",
+"Hindi"
+],
+
+8:[
+"Mathematics",
+"Science",
+"Social Science",
+"English",
+"Hindi"
+],
+
+9:[
+"Mathematics",
+"Science",
+"Social Science",
+"English",
+"Hindi"
+],
+
+10:[
+"Mathematics",
+"Science",
+"Social Science",
+"English",
+"Hindi"
+]
+
+};
+
+
+const seniorSubjects = {
+
+Science:[
+"Physics",
+"Chemistry",
+"Mathematics",
+"Biology",
+"English"
+],
+
+Commerce:[
+"Accountancy",
+"Business Studies",
+"Economics",
+"Mathematics",
+"English"
+],
+
+"Arts / Humanities":[
+"History",
+"Political Science",
+"Geography",
+"Economics",
+"English"
+]
+
+};
+
+
+/* =========================
+   NCERT CHAPTER DATA
+========================= */
+
+const chapters = {
+
+/* ---------- CLASS 6 ---------- */
+
+"6-Mathematics":[
+"Patterns in Mathematics",
+"Lines and Angles",
+"Number Play",
+"Data Handling and Presentation",
+"Prime Time",
+"Perimeter and Area",
+"Fractions",
+"Playing with Constructions",
+"Symmetry",
+"The Other Side of Zero"
+],
+
+"6-Science":[
+"The Wonderful World of Science",
+"Exploring Magnets",
+"Materials Around Us",
+"Temperature and its Measurement",
+"Beyond Earth",
+"Diversity in the Living World",
+"Mindful Eating: A Path to a Healthy Body",
+"A Journey through States of Water",
+"Methods of Separation in Everyday Life",
+"Living Creatures: Exploring their Characteristics",
+"Nature's Treasures",
+"Beyond Earth"
+],
+
+"6-Social Science":[
+"Locating Places on the Earth",
+"Seas and Oceans: Continents and Landforms",
+"Landforms and Life",
+"Timeline and Sources of History",
+"India, That Is Bharat",
+"India's Cultural Roots",
+"Unity in Diversity, or 'Many in the One'",
+"Family and Community",
+"Grassroots Democracy – Part 1: Governance",
+"Grassroots Democracy – Part 2: Local Government in Rural Areas",
+"Grassroots Democracy – Part 3: Local Government in Urban Areas",
+"The Value of Work",
+"Economic Activities Around Us"
+],
+
+"6-English":[
+"A House, A Home",
+"The Raven and the Fox",
+"Rama to the Rescue",
+"An Indian - American Woman in Space: Kalpana Chawla",
+"A Different Kind of School",
+"Who I Am",
+"Fair Play",
+"An Indian - American Woman in Space",
+"Desert Animals",
+"The Banyan Tree"
+],
+
+"6-Hindi":[
+"मातृभूमि",
+"गोल",
+"पहली बूँद",
+"हार की जीत",
+"मेरी माँ",
+"जलाते चलो",
+"सत्रिया और बिहू नृत्य",
+"मैया मैं नहिं माखन खायो",
+"परीक्षा",
+"चेतक की वीरता"
+],
+
+
+/* ---------- CLASS 7 ---------- */
+
+"7-Mathematics":[
+"Integers",
+"Fractions, Decimals and Percentages",
+"Variables",
+"Simple Equations",
+"Lines and Angles",
+"The Triangle and its Properties",
+"Comparing Quantities",
+"Number Play",
+"Rational Numbers",
+"Practical Geometry",
+"Perimeter and Area",
+"Algebraic Expressions",
+"Exponents and Powers",
+"Symmetry",
+"Visualising Solid Shapes"
+],
+
+"7-Science":[
+"Nutrition in Plants",
+"Nutrition in Animals",
+"Heat",
+"Acids, Bases and Salts",
+"Physical and Chemical Changes",
+"Respiration in Organisms",
+"Transportation in Animals and Plants",
+"Reproduction in Plants",
+"Motion and Time",
+"Electric Current and its Effects",
+"Light",
+"Forests: Our Lifeline",
+"Wastewater Story"
+],
+
+"7-Social Science":[
+"Tracing Changes Through A Thousand Years",
+"New Kings and Kingdoms",
+"The Delhi Sultans",
+"The Mughal Empire",
+"Rulers and Buildings",
+"Towns, Traders and Craftspersons",
+"Tribes, Nomads and Settled Communities",
+"Devotional Paths to the Divine",
+"The Making of Regional Cultures",
+"Eighteenth-Century Political Formations",
+"Environment",
+"Inside Our Earth",
+"Our Changing Earth",
+"Air",
+"Water",
+"Natural Vegetation and Wildlife",
+"Human Environment",
+"Human Environment – Settlement, Transport and Communication",
+"Life in the Temperate Grasslands",
+"Life in the Deserts",
+"On Equality",
+"Role of the Government in Health",
+"How the State Government Works",
+"Growing up as Boys and Girls",
+"Women Change the World",
+"Understanding Media",
+"Markets Around Us",
+"A Shirt in the Market",
+"Struggles for Equality"
+],
+
+"7-English":[
+"Three Questions",
+"A Gift of Chappals",
+"Gopal and the Hilsa-Fish",
+"The Ashes That Made Trees Bloom",
+"Quality",
+"Expert Detectives",
+"The Invention of Vita-Wonk",
+"Fire: Friend and Foe",
+"A Bicycle in Good Repair",
+"The Story of Cricket"
+],
+
+"7-Hindi":[
+"हम पंछी उन्मुक्त गगन के",
+"हिमालय की बेटियाँ",
+"कठपुतली",
+"मिठाईवाला",
+"पापा खो गए",
+"शाम एक किसान",
+"अपूर्व अनुभव",
+"रहीम के दोहे",
+"एक तिनका",
+"खानपान की बदलती तस्वीर"
+],
+
+
+/* ---------- CLASS 8 ---------- */
+
+"8-Mathematics":[
+"Rational Numbers",
+"Linear Equations in One Variable",
+"Understanding Quadrilaterals",
+"Practical Geometry",
+"Data Handling",
+"Squares and Square Roots",
+"Cubes and Cube Roots",
+"Comparing Quantities",
+"Algebraic Expressions and Identities",
+"Visualising Solid Shapes",
+"Mensuration",
+"Exponents and Powers",
+"Direct and Inverse Proportions",
+"Factorisation",
+"Introduction to Graphs",
+"Playing with Numbers"
+],
+
+"8-Science":[
+"Crop Production and Management",
+"Microorganisms: Friend and Foe",
+"Synthetic Fibres and Plastics",
+"Materials: Metals and Non-Metals",
+"Coal and Petroleum",
+"Combustion and Flame",
+"Conservation of Plants and Animals",
+"Cell — Structure and Functions",
+"Reproduction in Animals",
+"Reaching the Age of Adolescence",
+"Force and Pressure",
+"Friction",
+"Sound",
+"Chemical Effects of Electric Current",
+"Some Natural Phenomena",
+"Light",
+"Stars and the Solar System",
+"Pollution of Air and Water"
+],
+
+"8-Social Science":[
+"How, When and Where",
+"From Trade to Territory",
+"Ruling the Countryside",
+"Tribals, Dikus and the Vision of a Golden Age",
+"When People Rebel: 1857 and After",
+"Weavers, Iron Smelters and Factory Owners",
+"Civilising the 'Native', Educating the Nation",
+"Women, Caste and Reform",
+"The Making of the National Movement",
+"India After Independence",
+"Resources",
+"Land, Soil, Water, Natural Vegetation and Wildlife Resources",
+"Mineral and Power Resources",
+"Agriculture",
+"Industries",
+"Human Resources",
+"The Indian Constitution",
+"Understanding Secularism",
+"Why Do We Need a Parliament?",
+"Understanding Laws",
+"Judiciary",
+"Understanding Our Criminal Justice System",
+"Understanding Marginalisation",
+"Confronting Marginalisation",
+"Public Facilities",
+"Law and Social Justice"
+],
+
+"8-English":[
+"The Best Christmas Present in the World",
+"The Tsunami",
+"Glimpses of the Past",
+"Bepin Choudhury's Lapse of Memory",
+"The Summit Within",
+"This is Jody's Fawn",
+"A Visit to Cambridge",
+"A Short Monsoon Diary",
+"The Great Stone Face – I",
+"The Great Stone Face – II"
+],
+
+"8-Hindi":[
+"ध्वनि",
+"लाख की चूड़ियाँ",
+"बस की यात्रा",
+"दीवानों की हस्ती",
+"चिट्ठियों की अनूठी दुनिया",
+"भगवान के डाकिए",
+"क्या निराश हुआ जाए",
+"यह सबसे कठिन समय नहीं",
+"कबीर की साखियाँ",
+"कामचोर"
+],
+
+
+/* ---------- CLASS 9 ---------- */
+
+"9-Mathematics":[
+"Number Systems",
+"Polynomials",
+"Coordinate Geometry",
+"Linear Equations in Two Variables",
+"Introduction to Euclid's Geometry",
+"Lines and Angles",
+"Triangles",
+"Quadrilaterals",
+"Circles",
+"Heron's Formula",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+"9-Science":[
+"Fundamental Unit of Life",
+"Tissues",
+"Motion",
+"Force and Laws of Motion",
+"Gravitation",
+"Work and Energy",
+"Sound",
+"Why Do We Fall Ill?",
+"Natural Resources",
+"Improvement in Food Resources"
+],
+
+"9-Social Science":[
+"The French Revolution",
+"Socialism in Europe and the Russian Revolution",
+"India: Size and Location",
+"Physical Features of India",
+"Drainage",
+"Climate",
+"Population",
+"What is Democracy? Why Democracy?",
+"Constitutional Design",
+"Electoral Politics",
+"Working of Institutions",
+"Democratic Rights",
+"The Story of Village Palampur",
+"People as Resource",
+"Poverty as a Challenge",
+"Food Security in India"
+],
+
+"9-English":[
+"The Fun They Had",
+"The Sound of Music",
+"The Little Girl",
+"A Truly Beautiful Mind",
+"The Snake and the Mirror",
+"My Childhood",
+"Reach for the Top",
+"Kathmandu",
+"If I Were You"
+],
+
+"9-Hindi":[
+"दो बैलों की कथा",
+"ल्हासा की ओर",
+"उपभोक्तावाद की संस्कृति",
+"साँवले सपनों की याद",
+"नाना साहब की पुत्री देवी मैना को भस्म कर दिया गया",
+"प्रेमचंद के फटे जूते",
+"मेरे बचपन के दिन",
+"एक कुत्ता और एक मैना",
+"साखियाँ एवं सबद",
+"वाख"
+],
+
+
+/* ---------- CLASS 10 ---------- */
+
+"10-Mathematics":[
+"Real Numbers",
+"Polynomials",
+"Pair of Linear Equations in Two Variables",
+"Quadratic Equations",
+"Arithmetic Progressions",
+"Triangles",
+"Coordinate Geometry",
+"Introduction to Trigonometry",
+"Some Applications of Trigonometry",
+"Circles",
+"Areas Related to Circles",
+"Surface Areas and Volumes",
+"Statistics",
+"Probability"
+],
+
+"10-Science":[
+"Chemical Reactions and Equations",
+"Acids, Bases and Salts",
+"Metals and Non-metals",
+"Carbon and its Compounds",
+"Life Processes",
+"Control and Coordination",
+"How do Organisms Reproduce?",
+"Heredity",
+"Light – Reflection and Refraction",
+"The Human Eye and the Colourful World",
+"Electricity",
+"Magnetic Effects of Electric Current",
+"Our Environment"
+],
+
+"10-Social Science":[
+"The Rise of Nationalism in Europe",
+"Nationalism in India",
+"The Making of a Global World",
+"The Age of Industrialisation",
+"Print Culture and the Modern World",
+"Resources and Development",
+"Forest and Wildlife Resources",
+"Water Resources",
+"Agriculture",
+"Manufacturing Industries",
+"Lifelines of National Economy",
+"Power Sharing",
+"Federalism",
+"Gender, Religion and Caste",
+"Political Parties",
+"Outcomes of Democracy",
+"Development",
+"Sectors of the Indian Economy",
+"Money and Credit",
+"Globalisation and the Indian Economy",
+"Consumer Rights"
+],
+
+"10-English":[
+"A Letter to God",
+"Nelson Mandela: Long Walk to Freedom",
+"Two Stories about Flying",
+"From the Diary of Anne Frank",
+"Glimpses of India",
+"Mijbil the Otter",
+"Madam Rides the Bus",
+"The Sermon at Benares",
+"The Proposal"
+],
+
+"10-Hindi":[
+"सूरदास",
+"राम-लक्ष्मण-परशुराम संवाद",
+"आत्मकथ्य",
+"उत्साह और अट नहीं रही है",
+"यह दंतुरित मुस्कान और फसल",
+"संगतकार",
+"नेताजी का चश्मा",
+"बालगोबिन भगत",
+"लखनवी अंदाज़",
+"मानवीय करुणा की दिव्य चमक"
+],
+
+
+/* ---------- CLASS 11 SCIENCE ---------- */
+
+"11-Physics":[
+"Units and Measurements",
+"Motion in a Straight Line",
+"Motion in a Plane",
+"Laws of Motion",
+"Work, Energy and Power",
+"System of Particles and Rotational Motion",
+"Gravitation",
+"Mechanical Properties of Solids",
+"Mechanical Properties of Fluids",
+"Thermal Properties of Matter",
+"Thermodynamics",
+"Kinetic Theory",
+"Oscillations",
+"Waves"
+],
+
+"11-Chemistry":[
+"Some Basic Concepts of Chemistry",
+"Structure of Atom",
+"Classification of Elements and Periodicity in Properties",
+"Chemical Bonding and Molecular Structure",
+"Thermodynamics",
+"Equilibrium",
+"Redox Reactions",
+"Organic Chemistry – Some Basic Principles and Techniques",
+"Hydrocarbons"
+],
+
+"11-Mathematics":[
+"Sets",
+"Relations and Functions",
+"Trigonometric Functions",
+"Principle of Mathematical Induction",
+"Complex Numbers and Quadratic Equations",
+"Linear Inequalities",
+"Permutations and Combinations",
+"Binomial Theorem",
+"Sequences and Series",
+"Straight Lines",
+"Conic Sections",
+"Introduction to Three Dimensional Geometry",
+"Limits and Derivatives",
+"Statistics",
+"Probability"
+],
+
+"11-Biology":[
+"The Living World",
+"Biological Classification",
+"Plant Kingdom",
+"Animal Kingdom",
+"Morphology of Flowering Plants",
+"Anatomy of Flowering Plants",
+"Structural Organisation in Animals",
+"Cell: The Unit of Life",
+"Biomolecules",
+"Cell Cycle and Cell Division",
+"Photosynthesis in Plants",
+"Respiration in Plants",
+"Plant Growth and Development",
+"Breathing and Exchange of Gases",
+"Body Fluids and Circulation",
+"Excretory Products and their Elimination",
+"Locomotion and Movement",
+"Neural Control and Coordination",
+"Chemical Coordination and Integration"
+],
+
+"11-English":[
+"The Portrait of a Lady",
+"We're Not Afraid to Die... if We Can All Be Together",
+"Discovering Tut: The Saga Continues",
+"Landscape of the Soul",
+"The Ailing Planet: the Green Movement's Role",
+"The Browning Version",
+"Silk Road"
+],
+
+
+/* ---------- CLASS 12 SCIENCE ---------- */
+
+"12-Physics":[
+"Electric Charges and Fields",
+"Electrostatic Potential and Capacitance",
+"Current Electricity",
+"Moving Charges and Magnetism",
+"Magnetism and Matter",
+"Electromagnetic Induction",
+"Alternating Current",
+"Electromagnetic Waves",
+"Ray Optics and Optical Instruments",
+"Wave Optics",
+"Dual Nature of Radiation and Matter",
+"Atoms",
+"Nuclei",
+"Semiconductor Electronics"
+],
+
+"12-Chemistry":[
+"Solutions",
+"Electrochemistry",
+"Chemical Kinetics",
+"The d- and f-Block Elements",
+"Coordination Compounds",
+"Haloalkanes and Haloarenes",
+"Alcohols, Phenols and Ethers",
+"Aldehydes, Ketones and Carboxylic Acids",
+"Amines",
+"Biomolecules"
+],
+
+"12-Mathematics":[
+"Relations and Functions",
+"Inverse Trigonometric Functions",
+"Matrices",
+"Determinants",
+"Continuity and Differentiability",
+"Application of Derivatives",
+"Integrals",
+"Application of Integrals",
+"Differential Equations",
+"Vector Algebra",
+"Three Dimensional Geometry",
+"Linear Programming",
+"Probability"
+],
+
+"12-Biology":[
+"Sexual Reproduction in Flowering Plants",
+"Human Reproduction",
+"Reproductive Health",
+"Principles of Inheritance and Variation",
+"Molecular Basis of Inheritance",
+"Evolution",
+"Human Health and Disease",
+"Microbes in Human Welfare",
+"Biotechnology: Principles and Processes",
+"Biotechnology and its Applications",
+"Organisms and Populations",
+"Ecosystem",
+"Biodiversity and Conservation",
+"Environmental Issues"
+],
+
+"12-English":[
+"The Last Lesson",
+"Lost Spring",
+"Deep Water",
+"The Rattrap",
+"Indigo",
+"Poets and Pancakes",
+"The Interview",
+"My Mother at Sixty-Six",
+"An Elementary School Classroom in a Slum",
+"Keeping Quiet",
+"A Thing of Beauty",
+"A Roadside Stand",
+"Aunt Jennifer's Tigers"
+],
+
+
+/* ---------- COMMERCE ---------- */
+
+"11-Accountancy":[
+"Introduction to Accounting",
+"Theory Base of Accounting",
+"Recording of Transactions – I",
+"Recording of Transactions – II",
+"Bank Reconciliation Statement",
+"Trial Balance and Rectification of Errors",
+"Depreciation, Provisions and Reserves",
+"Bill of Exchange",
+"Financial Statements – I",
+"Financial Statements – II"
+],
+
+"11-Business Studies":[
+"Nature and Purpose of Business",
+"Forms of Business Organisation",
+"Private, Public and Global Enterprises",
+"Business Services",
+"Emerging Modes of Business",
+"Social Responsibility of Business and Business Ethics",
+"Sources of Business Finance",
+"Small Business",
+"Internal Trade",
+"International Business"
+],
+
+"11-Economics":[
+"Introduction",
+"Collection of Data",
+"Organisation of Data",
+"Presentation of Data",
+"Measures of Central Tendency",
+"Measures of Dispersion",
+"Correlation",
+"Introduction to Micro Economics",
+"Consumer's Equilibrium",
+"Demand",
+"Producer Behaviour and Supply",
+"Perfect Competition",
+"Market Equilibrium"
+],
+
+"12-Accountancy":[
+"Accounting for Partnership Firms",
+"Accounting for Companies",
+"Analysis of Financial Statements",
+"Cash Flow Statement"
+],
+
+"12-Business Studies":[
+"Nature and Significance of Management",
+"Principles of Management",
+"Business Environment",
+"Planning",
+"Organising",
+"Staffing",
+"Directing",
+"Controlling",
+"Financial Management",
+"Financial Markets",
+"Marketing Management",
+"Consumer Protection"
+],
+
+"12-Economics":[
+"National Income Accounting",
+"Money and Banking",
+"Determination of Income and Employment",
+"Government Budget and the Economy",
+"Balance of Payments",
+"Development Experience (1947-90) and Economic Reforms since 1991",
+"Current Challenges Facing Indian Economy",
+"Development Experience of India"
+],
+
+
+/* ---------- ARTS ---------- */
+
+"11-History":[
+"From the Beginning of Time",
+"Writing and City Life",
+"An Empire Across Three Continents",
+"The Central Islamic Lands",
+"Nomadic Empires",
+"The Three Orders",
+"Changing Cultural Traditions",
+"Confrontation of Cultures",
+"The Industrial Revolution",
+"Displacing Indigenous Peoples",
+"Paths to Modernisation"
+],
+
+"11-Political Science":[
+"Constitution: Why and How?",
+"Rights in the Indian Constitution",
+"Election and Representation",
+"Executive",
+"Legislature",
+"Judiciary",
+"Federalism",
+"Local Governments",
+"Constitution as a Living Document",
+"The Philosophy of the Constitution",
+"Political Theory: An Introduction",
+"Freedom",
+"Equality",
+"Social Justice",
+"Rights",
+"Citizenship",
+"Nationalism",
+"Secularism"
+],
+
+"11-Geography":[
+"Geography as a Discipline",
+"The Origin and Evolution of the Earth",
+"Interior of the Earth",
+"Distribution of Oceans and Continents",
+"Minerals and Rocks",
+"Geomorphic Processes",
+"Landforms and their Evolution",
+"Composition and Structure of Atmosphere",
+"Solar Radiation, Heat Balance and Temperature",
+"Atmospheric Circulation and Weather Systems",
+"Water in the Atmosphere",
+"World Climate and Climate Change",
+"Water (Oceans)",
+"Movements of Ocean Water",
+"Life on the Earth",
+"Biogeochemical Cycles"
+],
+
+"12-History":[
+"Bricks, Beads and Bones",
+"Kings, Farmers and Towns",
+"Kinship, Caste and Class",
+"Thinkers, Beliefs and Buildings",
+"Through the Eyes of Travellers",
+"Bhakti-Sufi Traditions",
+"An Imperial Capital: Vijayanagara",
+"Peasants, Zamindars and the State",
+"Kings and Chronicles",
+"Colonialism and the Countryside",
+"Rebels and the Raj",
+"Framing the Constitution"
+],
+
+"12-Political Science":[
+"The End of Bipolarity",
+"Contemporary Centres of Power",
+"Contemporary South Asia",
+"International Organizations",
+"Security in the Contemporary World",
+"Environment and Natural Resources",
+"Globalisation",
+"Challenges of Nation-Building",
+"Era of One-Party Dominance",
+"Politics of Planned Development",
+"India's External Relations",
+"Challenges to and Restoration of the Congress System",
+"The Crisis of Democratic Order",
+"Regional Aspirations",
+"Recent Developments in Indian Politics"
+],
+
+"12-Geography":[
+"Human Geography: Nature and Scope",
+"The World Population: Distribution, Density and Growth",
+"Human Development",
+"Primary Activities",
+"Secondary Activities",
+"Tertiary and Quaternary Activities",
+"Transport and Communication",
+"International Trade",
+"Population: Distribution, Density, Growth and Composition",
+"Migration: Types, Causes and Consequences",
+"Human Settlements",
+"Land Resources and Agriculture",
+"Water Resources",
+"Mineral and Energy Resources",
+"Planning and Sustainable Development in Indian Context",
+"Transport and Communication",
+"International Trade",
+"Geographical Perspective on Selected Issues and Problems"
+]
+
+};
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentClass = null;
+let currentStream = null;
+let currentSubject = null;
+
+
+/* =========================
    SELECT CLASS
-========================================================= */
+========================= */
 
 function selectClass(cls){
 
-  currentClass=cls;
+  currentClass = cls;
+  currentStream = null;
 
-  currentStream=null;
-  currentSubject=null;
+  document.querySelectorAll(".class-btn")
+    .forEach(btn => btn.classList.remove("active"));
 
-  document.getElementById("streamArea").classList.add("hidden");
+  [...document.querySelectorAll(".class-btn")]
+    .find(btn => btn.textContent === "Class " + cls)
+    .classList.add("active");
 
-  if(cls===11 || cls===12){
+  const streamArea = document.getElementById("streamArea");
 
-    document.getElementById("streamArea").classList.remove("hidden");
+  streamArea.innerHTML = "";
 
-    document.getElementById("subjectTitle").textContent=
-      "Choose Your Stream";
+  if(cls === 11 || cls === 12){
 
-    document.getElementById("subjectButtons").innerHTML="";
+    const title = document.createElement("h2");
+    title.className = "subject-title";
+    title.textContent = "Choose Stream";
 
-    document.getElementById("chapterGrid").innerHTML=
-      `<div class="empty">
-        Select Science, Commerce or Arts / Humanities above.
-      </div>`;
+    const buttons = document.createElement("div");
+    buttons.className = "stream-buttons";
+
+    Object.keys(seniorSubjects).forEach(stream => {
+
+      const btn = document.createElement("button");
+
+      btn.className = "stream-btn";
+      btn.textContent = stream;
+
+      btn.onclick = () => selectStream(stream);
+
+      buttons.appendChild(btn);
+
+    });
+
+    streamArea.appendChild(title);
+    streamArea.appendChild(buttons);
+
+    document.getElementById("subjectButtons").innerHTML = "";
+    document.getElementById("chapterGrid").innerHTML = "";
+
+  }else{
+
+    showSubjects(juniorSubjects[cls]);
+
+  }
+
+}
+
+
+/* =========================
+   SELECT STREAM
+========================= */
+
+function selectStream(stream){
+
+  currentStream = stream;
+
+  document.querySelectorAll(".stream-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  [...document.querySelectorAll(".stream-btn")]
+    .find(btn => btn.textContent === stream)
+    .classList.add("active");
+
+  showSubjects(seniorSubjects[stream]);
+
+}
+
+
+/* =========================
+   SHOW SUBJECTS
+========================= */
+
+function showSubjects(subjectList){
+
+  const subjectButtons =
+    document.getElementById("subjectButtons");
+
+  subjectButtons.innerHTML = "";
+
+  subjectList.forEach(subject => {
+
+    const btn = document.createElement("button");
+
+    btn.className = "subject-btn";
+    btn.textContent = subject;
+
+    btn.onclick = () => selectSubject(subject);
+
+    subjectButtons.appendChild(btn);
+
+  });
+
+  document.getElementById("chapterGrid").innerHTML = "";
+
+}
+
+
+/* =========================
+   SELECT SUBJECT
+========================= */
+
+function selectSubject(subject){
+
+  currentSubject = subject;
+
+  document.querySelectorAll(".subject-btn")
+    .forEach(btn => btn.classList.remove("active"));
+
+  [...document.querySelectorAll(".subject-btn")]
+    .find(btn => btn.textContent === subject)
+    .classList.add("active");
+
+  document.getElementById("searchBox").value = "";
+
+  renderChapters();
+
+}
+
+
+/* =========================
+   RENDER CHAPTERS
+========================= */
+
+function renderChapters(){
+
+  let key = "";
+
+  if(currentClass <= 10){
+    key = currentClass + "-" + currentSubject;
+  }else{
+    key = currentClass + "-" + currentSubject;
+  }
+
+  const list = chapters[key] || [];
+
+  const grid = document.getElementById("chapterGrid");
+
+  grid.innerHTML = "";
+
+  if(list.length === 0){
+
+    grid.innerHTML = `
+      <div class="content-box" style="display:block">
+        <h2>Content Coming Soon</h2>
+        <p>
+          Chapters for this subject will be added after
+          verification with the current NCERT textbook.
+        </p>
+      </div>
+    `;
 
     return;
   }
 
-  renderSubjects();
-}
+  list.forEach((chapter,index)=>{
 
-/* =========================================================
-   STREAM
-========================================================= */
+    const card = document.createElement("div");
 
-function selectStream(stream){
+    card.className = "chapter-card";
 
-  currentStream=stream;
+    card.innerHTML = `
 
-  document.getElementById("subjectTitle").textContent=
-    stream==="science"
-    ? "Science Subjects"
-    : stream==="commerce"
-    ? "Commerce Subjects"
-    : "Arts / Humanities Subjects";
-
-  renderSubjects();
-}
-
-/* =========================================================
-   SUBJECTS
-========================================================= */
-
-function renderSubjects(){
-
-  const box=document.getElementById("subjectButtons");
-
-  box.innerHTML="";
-
-  let subjects;
-
-  if(currentClass===11 || currentClass===12){
-
-    if(!currentStream)return;
-
-    subjects=data[currentClass][capitalize(currentStream)];
-
-  }else{
-
-    subjects=data[currentClass];
-  }
-
-  Object.keys(subjects).forEach(subject=>{
-
-    const btn=document.createElement("button");
-
-    btn.className="selector";
-
-    btn.textContent=subject;
-
-    btn.onclick=()=>selectSubject(subject);
-
-    box.appendChild(btn);
-
-  });
-
-  document.getElementById("chapterGrid").innerHTML=
-    `<div class="empty">
-      Select a subject to see chapters.
-    </div>`;
-}
-
-/* =========================================================
-   SUBJECT SELECT
-========================================================= */
-
-function selectSubject(subject){
-
-  currentSubject=subject;
-
-  renderChapters();
-}
-
-/* =========================================================
-   CHAPTERS
-========================================================= */
-
-function getChapters(){
-
-  if(currentClass===11 || currentClass===12){
-
-    return data[currentClass]
-      [capitalize(currentStream)]
-      [currentSubject];
-
-  }
-
-  return data[currentClass][currentSubject];
-}
-
-function renderChapters(){
-
-  const grid=document.getElementById("chapterGrid");
-
-  grid.innerHTML="";
-
-  const chapters=getChapters() || [];
-
-  chapters.forEach((chapter,index)=>{
-
-    const card=document.createElement("div");
-
-    card.className="chapter-card";
-
-    card.dataset.name=chapter.toLowerCase();
-
-    card.innerHTML=`
-
-      <span class="chapter-number">
-        Chapter ${index+1}
-      </span>
+      <div class="chapter-number">
+        CHAPTER ${index + 1}
+      </div>
 
       <h3>${chapter}</h3>
 
-      <p>
-        Deep concept notes, definitions,
-        explanations, formulas, examples and
-        quick revision points.
-      </p>
+      <div class="action-buttons">
 
-      <button class="read-btn"
-        onclick='openNotes(${JSON.stringify(chapter)})'>
-        📖 Read Deep Notes
-      </button>
+        <button
+          class="action-btn notes-btn"
+          onclick="openContent('notes','${escapeText(chapter)}')">
+          📖 Notes
+        </button>
+
+        <button
+          class="action-btn questions-btn"
+          onclick="openContent('questions','${escapeText(chapter)}')">
+          📝 Questions
+        </button>
+
+        <button
+          class="action-btn pyq-btn"
+          onclick="openContent('pyq','${escapeText(chapter)}')">
+          🎯 PYQ
+        </button>
+
+      </div>
     `;
 
     grid.appendChild(card);
 
   });
+
 }
 
-/* =========================================================
+
+/* =========================
    SEARCH
-========================================================= */
+========================= */
 
 function searchChapters(){
 
-  const value=
-    document.getElementById("search").value.toLowerCase();
+  const query =
+    document.getElementById("searchBox")
+    .value
+    .toLowerCase();
 
-  document.querySelectorAll(".chapter-card").forEach(card=>{
+  document
+    .querySelectorAll(".chapter-card")
+    .forEach(card => {
 
-    card.style.display=
-      card.dataset.name.includes(value)
-      ? "block"
-      : "none";
+      const text =
+        card.innerText.toLowerCase();
 
+      card.style.display =
+        text.includes(query) ? "block" : "none";
+
+    });
+
+}
+
+
+/* =========================
+   CONTENT BUTTONS
+========================= */
+
+function openContent(type,chapter){
+
+  const box =
+    document.getElementById("contentBox");
+
+  const title =
+    document.getElementById("contentTitle");
+
+  const text =
+    document.getElementById("contentText");
+
+  box.style.display = "block";
+
+  if(type === "notes"){
+
+    title.textContent =
+      "📖 Notes — " + chapter;
+
+    text.textContent =
+      "Detailed NCERT-based notes for this chapter will be added here. Notes will explain concepts step-by-step with definitions, examples, important points and quick revision.";
+
+  }
+
+  else if(type === "questions"){
+
+    title.textContent =
+      "📝 Questions — " + chapter;
+
+    text.textContent =
+      "Practice questions for this chapter will be added here. The question bank will include easy, moderate and challenging NCERT-based questions.";
+
+  }
+
+  else{
+
+    title.textContent =
+      "🎯 PYQ — " + chapter;
+
+    text.textContent =
+      "Previous-year questions and board-style practice for this chapter will be added here.";
+
+  }
+
+  box.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
   });
+
 }
 
-/* =========================================================
-   NOTES ENGINE
-========================================================= */
 
-function openNotes(chapter){
+/* =========================
+   SAFE TEXT
+========================= */
 
-  document.getElementById("noteModal").style.display="block";
+function escapeText(text){
 
-  document.body.style.overflow="hidden";
+  return text
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,"&quot;");
 
-  document.getElementById("noteTitle").textContent=chapter;
-
-  document.getElementById("noteSubtitle").textContent=
-    `Class ${currentClass} • ${currentSubject}`;
-
-  document.getElementById("noteContent").innerHTML=
-    generateNotes(chapter);
 }
 
-/* =========================================================
-   DEEP NOTES GENERATOR
-========================================================= */
 
-function generateNotes(chapter){
-
-  const subject=currentSubject;
-
-  /* ---------- MATHEMATICS ---------- */
-
-  if(subject==="Mathematics"){
-
-    return mathematicsNotes(chapter);
-  }
-
-  /* ---------- PHYSICS ---------- */
-
-  if(subject==="Physics"){
-
-    return physicsNotes(chapter);
-  }
-
-  /* ---------- CHEMISTRY ---------- */
-
-  if(subject==="Chemistry"){
-
-    return chemistryNotes(chapter);
-  }
-
-  /* ---------- BIOLOGY ---------- */
-
-  if(subject==="Biology"){
-
-    return biologyNotes(chapter);
-  }
-
-  /* ---------- SOCIAL SCIENCE ---------- */
-
-  if(
-    subject==="Social Science" ||
-    subject==="History" ||
-    subject==="Political Science" ||
-    subject==="Geography" ||
-    subject==="Economics"
-  ){
-
-    return socialNotes(chapter);
-  }
-
-  return generalNotes(chapter,subject);
-}
-
-/* =========================================================
-   MATHEMATICS NOTES
-========================================================= */
-
-function mathematicsNotes(chapter){
-
-  const notes={
-
-  "Real Numbers":`
-
-  <h2>1. What are Real Numbers?</h2>
-
-  <p>
-  Real numbers are all numbers that can be represented on the
-  number line. They include natural numbers, whole numbers,
-  integers, rational numbers and irrational numbers.
-  </p>
-
-  <h2>2. Number System</h2>
-
-  <ul>
-    <li><b>Natural numbers:</b> 1, 2, 3, 4, ...</li>
-    <li><b>Whole numbers:</b> 0, 1, 2, 3, ...</li>
-    <li><b>Integers:</b> ..., -2, -1, 0, 1, 2, ...</li>
-    <li><b>Rational numbers:</b> numbers of the form p/q where q ≠ 0.</li>
-    <li><b>Irrational numbers:</b> numbers that cannot be written as p/q.</li>
-  </ul>
-
-  <h2>3. Euclid's Division Lemma</h2>
-
-  <p>
-  For positive integers a and b, there exist unique integers q and r
-  such that:
-  </p>
-
-  <div class="formula">
-    a = bq + r, where 0 ≤ r &lt; b
-  </div>
-
-  <p>
-  This result is the basis of Euclid's algorithm for finding HCF.
-  </p>
-
-  <h2>4. Finding HCF Using Euclid's Algorithm</h2>
-
-  <div class="example">
-  <b>Example:</b> Find HCF of 135 and 225.
-  <br><br>
-  225 = 135 × 1 + 90<br>
-  135 = 90 × 1 + 45<br>
-  90 = 45 × 2 + 0<br><br>
-  Therefore HCF = <b>45</b>.
-  </div>
-
-  <h2>5. Fundamental Theorem of Arithmetic</h2>
-
-  <p>
-  Every composite number can be expressed as a product of primes,
-  and this factorisation is unique apart from the order of the factors.
-  </p>
-
-  <div class="example">
-  360 = 2 × 2 × 2 × 3 × 3 × 5
-  <br>
-  = 2³ × 3² × 5
-  </div>
-
-  <h2>6. HCF and LCM</h2>
-
-  <p>
-  For two positive integers a and b:
-  </p>
-
-  <div class="formula">
-    HCF(a,b) × LCM(a,b) = a × b
-  </div>
-
-  <h2>7. Decimal Expansion</h2>
-
-  <p>
-  A rational number p/q in lowest form has a terminating decimal
-  expansion if and only if the prime factors of q are only 2 and/or 5.
-  </p>
-
-  <div class="example">
-  7/40 terminates because 40 = 2³ × 5.
-  </div>
-
-  <p>
-  If the denominator contains a prime factor other than 2 or 5,
-  the decimal expansion is non-terminating recurring.
-  </p>
-
-  <div class="quick">
-  <b>Quick Revision</b>
-  <ul>
-    <li>Euclid: a = bq + r</li>
-    <li>HCF × LCM = product of two numbers</li>
-    <li>Unique prime factorisation</li>
-    <li>Denominator 2ᵐ5ⁿ → terminating decimal</li>
-  </ul>
-  </div>
-  `,
-
-  "Polynomials":`
-
-  <h2>1. Meaning of Polynomial</h2>
-
-  <p>
-  A polynomial in x is an expression of the form:
-  </p>
-
-  <div class="formula">
-  aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀
-  </div>
-
-  <p>
-  where coefficients are real numbers and powers of x are
-  non-negative integers.
-  </p>
-
-  <h2>2. Degree</h2>
-
-  <p>
-  The highest power of the variable with a non-zero coefficient
-  is called the degree.
-  </p>
-
-  <ul>
-    <li>5x + 2 → degree 1</li>
-    <li>x² + 3x + 1 → degree 2</li>
-    <li>4x³ - x + 7 → degree 3</li>
-  </ul>
-
-  <h2>3. Zero of a Polynomial</h2>
-
-  <p>
-  A number α is a zero of p(x) if:
-  </p>
-
-  <div class="formula">
-  p(α) = 0
-  </div>
-
-  <div class="example">
-  For p(x)=x-5,
-  <br>
-  p(5)=5-5=0.
-  <br>
-  Therefore 5 is a zero.
-  </div>
-
-  <h2>4. Quadratic Polynomial</h2>
-
-  <div class="formula">
-  ax² + bx + c, a ≠ 0
-  </div>
-
-  <p>
-  If α and β are its zeroes:
-  </p>
-
-  <div class="formula">
-  α + β = -b/a
-  <br>
-  αβ = c/a
-  </div>
-
-  <h2>5. Forming a Polynomial</h2>
-
-  <p>
-  If the zeroes are α and β, a quadratic polynomial is:
-  </p>
-
-  <div class="formula">
-  x² - (α+β)x + αβ
-  </div>
-
-  <div class="quick">
-  <b>Remember:</b>
-  Sum of zeroes = negative coefficient of x divided by coefficient of x².
-  Product of zeroes = constant term divided by coefficient of x².
-  </div>
-  `,
-
-  "Quadratic Equations":`
-
-  <h2>1. Standard Form</h2>
-
-  <div class="formula">
-  ax² + bx + c = 0, a ≠ 0
-  </div>
-
-  <h2>2. Solving by Factorisation</h2>
-
-  <div class="example">
-  x² - 5x + 6 = 0
-  <br><br>
-  x² - 2x - 3x + 6 = 0
-  <br>
-  (x-2)(x-3)=0
-  <br><br>
-  Therefore x=2 or x=3.
-  </div>
-
-  <h2>3. Quadratic Formula</h2>
-
-  <div class="formula">
-  x = (-b ± √(b²-4ac)) / 2a
-  </div>
-
-  <h2>4. Discriminant</h2>
-
-  <div class="formula">
-  D = b² - 4ac
-  </div>
-
-  <ul>
-    <li>D &gt; 0 → two distinct real roots</li>
-    <li>D = 0 → two equal real roots</li>
-    <li>D &lt; 0 → no real roots</li>
-  </ul>
-
-  <h2>5. Nature of Roots</h2>
-
-  <p>
-  The discriminant gives the nature of the roots without actually
-  solving the equation.
-  </p>
-
-  <h2>6. Word Problems</h2>
-
-  <p>
-  In application problems, first define the unknown quantity,
-  translate the information into an equation, solve it and finally
-  reject any value that does not satisfy the original situation.
-  </p>
-
-  <div class="warning">
-  Always check whether a mathematical answer is physically meaningful.
-  For example, a length or age cannot normally be negative.
-  </div>
-
-  <div class="quick">
-  <b>Quick Revision:</b>
-  <br>
-  Standard form → ax²+bx+c=0
-  <br>
-  Formula → (-b±√D)/2a
-  <br>
-  D=b²-4ac
-  </div>
-  `
-
-  };
-
-  if(notes[chapter]) return notes[chapter];
-
-  return genericMathDeep(chapter);
-}
-
-/* =========================================================
-   OTHER MATHEMATICS CHAPTERS
-========================================================= */
-
-function genericMathDeep(chapter){
-
-return `
-
-<h2>1. Chapter Overview</h2>
-
-<p>
-<b>${chapter}</b> is an important mathematical topic.
-The chapter should be studied in three stages:
-understanding the definitions, learning the mathematical results,
-and solving problems step-by-step.
-</p>
-
-<h2>2. Core Concepts</h2>
-
-<ul>
-<li>Understand every definition before memorising formulas.</li>
-<li>Identify the given quantities.</li>
-<li>Identify what has to be calculated or proved.</li>
-<li>Select the appropriate theorem, identity or formula.</li>
-<li>Write every important step clearly.</li>
-</ul>
-
-<h2>3. How to Solve Problems</h2>
-
-<ol>
-<li>Read the complete problem carefully.</li>
-<li>Write the given information.</li>
-<li>Write the required quantity.</li>
-<li>Choose the relevant concept.</li>
-<li>Substitute values carefully.</li>
-<li>Simplify the result.</li>
-<li>Check the final answer.</li>
-</ol>
-
-<h2>4. Common Mistakes</h2>
-
-<ul>
-<li>Skipping steps.</li>
-<li>Using a formula without checking its conditions.</li>
-<li>Sign errors.</li>
-<li>Incorrect units.</li>
-<li>Not checking the final result.</li>
-</ul>
-
-<div class="quick">
-<b>Study Tip:</b>
-Do not learn mathematics only by reading. After understanding
-each concept, solve several problems without looking at the solution.
-</div>
-`;
-}
-
-/* =========================================================
-   PHYSICS
-========================================================= */
-
-function physicsNotes(chapter){
-
-return `
-
-<h2>1. Introduction</h2>
-
-<p>
-<b>${chapter}</b> is studied by connecting physical concepts
-with mathematical relationships and real-world observations.
-</p>
-
-<h2>2. Important Learning Method</h2>
-
-<ul>
-<li>Understand the physical meaning of every quantity.</li>
-<li>Learn SI units.</li>
-<li>Understand the governing law.</li>
-<li>Draw diagrams whenever useful.</li>
-<li>Substitute numerical values only after writing the formula.</li>
-</ul>
-
-<h2>3. Numerical Problem Method</h2>
-
-<ol>
-<li>Write the given data.</li>
-<li>Convert all quantities to compatible SI units.</li>
-<li>Write the required quantity.</li>
-<li>Write the relevant equation.</li>
-<li>Substitute values.</li>
-<li>Calculate carefully.</li>
-<li>Write the unit with the final answer.</li>
-</ol>
-
-<h2>4. Conceptual Understanding</h2>
-
-<p>
-Physics is not simply formula memorisation. A formula represents
-a relationship between physical quantities. Understanding that
-relationship makes numerical problems much easier.
-</p>
-
-<div class="formula">
-Physical quantity = numerical value × unit
-</div>
-
-<div class="quick">
-<b>Revision Checklist</b>
-<ul>
-<li>Definitions</li>
-<li>Laws</li>
-<li>Units and dimensions</li>
-<li>Important equations</li>
-<li>Graphs and diagrams</li>
-<li>Numerical applications</li>
-</ul>
-</div>
-`;
-}
-
-/* =========================================================
-   CHEMISTRY
-========================================================= */
-
-function chemistryNotes(chapter){
-
-return `
-
-<h2>1. Introduction</h2>
-
-<p>
-<b>${chapter}</b> should be understood through definitions,
-chemical principles, equations, observations and applications.
-</p>
-
-<h2>2. How to Study Chemistry</h2>
-
-<ul>
-<li>Understand the meaning of each chemical term.</li>
-<li>Learn symbols and formulas carefully.</li>
-<li>Balance chemical equations where required.</li>
-<li>Understand why a reaction occurs.</li>
-<li>Connect microscopic particles with observable changes.</li>
-</ul>
-
-<h2>3. Important Areas</h2>
-
-<h3>Definitions</h3>
-<p>
-First learn the exact meaning of important terms and distinguish
-between similar concepts.
-</p>
-
-<h3>Chemical Equations</h3>
-<p>
-A chemical equation represents reactants changing into products.
-It must obey conservation of atoms.
-</p>
-
-<div class="formula">
-Number of atoms of each element must be equal on both sides.
-</div>
-
-<h3>Numerical Chemistry</h3>
-
-<ol>
-<li>Write the given quantities.</li>
-<li>Convert units where necessary.</li>
-<li>Write the relevant relation.</li>
-<li>Substitute carefully.</li>
-<li>Check significant figures when applicable.</li>
-</ol>
-
-<div class="quick">
-<b>Revision:</b>
-Definitions → concepts → equations → exceptions → examples → numericals.
-</div>
-`;
-}
-
-/* =========================================================
-   BIOLOGY
-========================================================= */
-
-function biologyNotes(chapter){
-
-return `
-
-<h2>1. Introduction</h2>
-
-<p>
-<b>${chapter}</b> deals with biological structures, processes,
-relationships and functions. Biology becomes easier when every
-process is understood as a sequence rather than memorised as
-isolated facts.
-</p>
-
-<h2>2. Biological Process Method</h2>
-
-<ol>
-<li>Identify the structure or organism.</li>
-<li>Understand its function.</li>
-<li>Learn the sequence of events.</li>
-<li>Understand the role of each component.</li>
-<li>Connect the process with its biological importance.</li>
-</ol>
-
-<h2>3. Important Points</h2>
-
-<ul>
-<li>Structure and function are closely related.</li>
-<li>Biological systems interact with one another.</li>
-<li>Processes usually involve multiple stages.</li>
-<li>Diagrams can be extremely useful for revision.</li>
-</ul>
-
-<h2>4. Answer Writing</h2>
-
-<p>
-For long-answer questions, begin with a definition or introduction,
-then explain the process in logical order and finish with its
-importance or result.
-</p>
-
-<div class="quick">
-<b>Revision Method:</b>
-Definition → diagram → structure → function → process → significance.
-</div>
-`;
-}
-
-/* =========================================================
-   SOCIAL SCIENCE
-========================================================= */
-
-function socialNotes(chapter){
-
-return `
-
-<h2>1. Chapter Introduction</h2>
-
-<p>
-<b>${chapter}</b> should be studied through causes, events,
-consequences, important terms, examples and connections with
-larger social or geographical ideas.
-</p>
-
-<h2>2. Cause and Effect</h2>
-
-<p>
-Many Social Science topics become easier when organised as:
-</p>
-
-<div class="formula">
-Cause → Event / Process → Immediate Effect → Long-Term Effect
-</div>
-
-<h2>3. Important Terms</h2>
-
-<ul>
-<li>Learn important definitions.</li>
-<li>Remember names and key developments.</li>
-<li>Understand relationships between events.</li>
-<li>Use examples wherever appropriate.</li>
-</ul>
-
-<h2>4. Answer Writing Strategy</h2>
-
-<ol>
-<li>Start directly with the answer.</li>
-<li>Use separate points for separate arguments.</li>
-<li>Include relevant examples.</li>
-<li>Use dates/names only when relevant.</li>
-<li>End with a short concluding statement when appropriate.</li>
-</ol>
-
-<h2>5. Revision</h2>
-
-<p>
-Create a timeline for History, concept maps for Political Science,
-and diagrams/maps/tables for Geography and Economics.
-</p>
-
-<div class="quick">
-<b>Quick Revision:</b>
-Definitions + causes + major developments + consequences + examples.
-</div>
-`;
-}
-
-/* =========================================================
-   GENERAL SUBJECTS
-========================================================= */
-
-function generalNotes(chapter,subject){
-
-return `
-
-<h2>1. Chapter Overview</h2>
-
-<p>
-<b>${chapter}</b> is part of ${subject} for Class ${currentClass}.
-The notes section is designed around concept understanding,
-important terms, examples, explanation and revision.
-</p>
-
-<h2>2. Learn the Basics First</h2>
-
-<ul>
-<li>Understand the chapter's main idea.</li>
-<li>Learn important terminology.</li>
-<li>Break large topics into smaller concepts.</li>
-<li>Study examples after understanding the concept.</li>
-</ul>
-
-<h2>3. Detailed Study Pattern</h2>
-
-<ol>
-<li>Read the introduction.</li>
-<li>Understand each heading.</li>
-<li>Make short revision points.</li>
-<li>Practice application-based questions.</li>
-<li>Review mistakes.</li>
-</ol>
-
-<h2>4. Exam Preparation</h2>
-
-<p>
-For examinations, revise definitions, important concepts,
-examples, diagrams, formulas where applicable and application-based
-questions.
-</p>
-
-<div class="quick">
-<b>StudyHub Method</b>
-<br><br>
-Understand → Learn → Apply → Revise → Practice.
-</div>
-`;
-}
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function capitalize(str){
-
-  return str.charAt(0).toUpperCase()+str.slice(1);
-}
-
-function closeNotes(){
-
-  document.getElementById("noteModal").style.display="none";
-
-  document.body.style.overflow="auto";
-}
-
-document.getElementById("noteModal").addEventListener("click",function(e){
-
-  if(e.target===this){
-    closeNotes();
-  }
-
-});
-
-/* Start */
+/* =========================
+   DEFAULT
+========================= */
 
 selectClass(6);
 
